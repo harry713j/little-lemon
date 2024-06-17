@@ -11,6 +11,9 @@ const environment_variables = {
   appwriteCollectionUserProfileId: String(
     import.meta.env.VITE_APPWRITE_COLLECTION_ID_3
   ),
+  appwriteCollectionReservationId: String(
+    import.meta.env.VITE_APPWRITE_COLLECTION_ID_4
+  ),
   appwriteItemImageBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID_1),
   appwriteProfileImageBucketId: String(
     import.meta.env.VITE_APPWRITE_BUCKET_ID_2

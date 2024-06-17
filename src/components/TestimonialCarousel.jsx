@@ -1,12 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { TestimonialCard } from "./index.js";
+import testimonyService from "../appwrite/testimonyService.js";
 
 function TestimonialCarousel() {
+  const [testimonies, setTestimonies] = useState([]);
   const carouselRef = useRef(null);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
   const [direction, setDirection] = useState("forward");
+
+  useEffect(() => {
+    getTestimonies();
+  }, []);
+
+  const getTestimonies = async () => {
+    try {
+      const data = await testimonyService.getReviews();
+      console.log(data);
+      setTestimonies(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleScroll = () => {
     const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
@@ -73,10 +89,17 @@ function TestimonialCarousel() {
         className="w-full overflow-hidden flex items-center scroll-smooth "
         ref={carouselRef}
       >
-        <TestimonialCard />
-        <TestimonialCard />
-        <TestimonialCard />
-        <TestimonialCard />
+        {testimonies.map((testimony) => (
+          <TestimonialCard
+            key={testimony.$id}
+            review={testimony.review}
+            profile={
+              testimonyService.getImagePreview(testimony.user_image).href
+            }
+            name={testimony.userName}
+            ratings={testimony.ratings}
+          />
+        ))}
       </div>
       <button
         className={`absolute -right-10 z-10 bg-white rounded-full border border-transparent xl:p-4 sm:p-3 p-2 shadow-md 

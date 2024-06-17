@@ -1,5 +1,6 @@
 import "./App.css";
 import {
+  AllMenu,
   Button,
   Cart,
   CheckoutItemCard,
@@ -15,21 +16,41 @@ import {
   TestimonialCard,
   TestimonialCarousel,
   TextArea,
+  CustomDatePicker,
+  CustomTimePicker,
+  SignupForm,
+  RadioButtonGroup,
+  LoginForm,
+  CheckoutItems,
+  ReservationForm,
+  CheckoutForm,
 } from "./components";
-import CustomDatePicker from "./components/CustomDatePicker";
-import environment_variables from "./environment_import/environmentVariables";
 
 function App() {
-  // console.log(environment_variables.appwriteCollectionTestimonyId);
   return (
-    <div className="bg-creamWhite h-screen">
-      <div className="flex flex-col gap-4 mt-5 mb-10">
+    <div className="bg-creamWhite">
+      <div className="flex flex-col gap-4 pt-5">
         <Header />
-        {/* <Input type="file" label="profile" />
-        <Input type="date" label="date" />
-        <Input type="time" label="time" /> */}
-        {/* <CustomDatePicker />
-        <ItemCard /> */}
+
+        <div className="mx-8 flex flex-col gap-5">
+          {/* <CustomDatePicker />
+          <CustomTimePicker /> */}
+          {/* <Input type="password" label="Input" />
+          <Input type="file" />
+          <RadioButtonGroup /> */}
+          {/* <ReservationForm /> */}
+          <CheckoutForm />
+        </div>
+        {/* <CheckoutItems />
+         */}
+        <AllMenu />
+        <div
+          className="my-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-sm flex justify-center 
+        items-center px-2 py-6 space-y-6 flex-col"
+        >
+          <SignupForm />
+          <LoginForm />
+        </div>
         <Footer />
       </div>
     </div>

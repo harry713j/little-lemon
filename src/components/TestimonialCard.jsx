@@ -1,10 +1,8 @@
 import React from "react";
 import blank_profile from "../assets/blank_profile.jpg";
-import profile_lady from "../assets/profile_lady.jpg";
 import { HiStar, HiOutlineStar } from "react-icons/hi2";
 
-function TestimonialCard({ testimony, profile, name, ratings }) {
-  const star = 5;
+function TestimonialCard({ review, profile, name, ratings }) {
   return (
     <div
       className="xl:w-[800px] sm:w-[520px] w-[360px] h-auto 
@@ -18,10 +16,7 @@ function TestimonialCard({ testimony, profile, name, ratings }) {
           className="font-karla font-medium mb-4 text-black xl:text-xl xl:leading-[24px] 
         sm:text-lg sm:leading-[21.5px] text-base leading-[19.2px] "
         >
-          Great place for a family dinner! The kids loved the variety of dishes,
-          and the pasta I ordered was delicious. The only downside was that the
-          service was a bit slow, but the food more than made up for it. Highly
-          recommend.
+          {review}
         </p>
       </div>
 
@@ -34,19 +29,23 @@ function TestimonialCard({ testimony, profile, name, ratings }) {
         overflow-hidden rounded-full border-2 border-creamWhite "
         >
           <img
-            src={profile_lady}
+            src={profile ? profile : blank_profile}
             alt="profile"
             className="w-full h-full rounded-full object-cover"
           />
         </span>
 
         <span className="font-karla font-extrabold mt-2 text-bluishWhite lg:text-xl sm:text-lg text-base">
-          Jenny Wilson
+          {name}
         </span>
         <span className="flex items-center sm:gap-[2px] gap-[1px]">
-          {[...Array(star)].map((_, index) => (
-            <HiStar key={index} className="text-orange" />
-          ))}
+          {[...Array(5)].map((_, index) =>
+            ratings > index ? (
+              <HiStar key={index} className="text-orange" />
+            ) : (
+              <HiOutlineStar key={index} className="text-orange" />
+            )
+          )}
         </span>
       </div>
     </div>
