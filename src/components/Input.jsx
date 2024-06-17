@@ -1,36 +1,106 @@
 import React, { useId, useState } from "react";
+import { useController } from "react-hook-form";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
+import { IoInformationCircleOutline } from "react-icons/io5";
 
 const Input = React.forwardRef(function (
-  { type = "text", label, ...props },
+  {
+    type = "text",
+    label,
+    className,
+    labelClassName,
+    name,
+    control,
+    rules,
+    defaultValue = "",
+    ...props
+  },
   ref
 ) {
   const id = useId();
-  const [value, setValue] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const { field, fieldState } = useController({
+    name,
+    control,
+    rules,
+    defaultValue,
+  });
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
   };
+
   return (
-    <div className="relative flex flex-col xl:mb-4 sm:mb-3 ">
+    <div
+      className="relative flex flex-col 
+    "
+    >
       <input
         id={id}
-        type={type}
+        type={showPassword ? "text" : type}
         ref={ref}
-        value={value}
-        onChange={handleChange}
-        className={` peer inline-block bg-inherit focus:bg-inherit xl:w-[400px] xl:h-12 sm:w-[300px] sm:h-10 w-[240px]
+        value={field.value}
+        onChange={field.onChange}
+        className={`${className} peer inline-block bg-inherit focus:bg-inherit xl:w-[400px] xl:h-12 sm:w-[300px] sm:h-10 w-[240px] max-[320px]:w-[220px]
          h-9 xl:rounded-lg rounded-md px-3 py-2 outline-none border border-green/70 xl:px-4 xl:py-2 duration-300
         font-karla font-medium xl:text-lg sm:text-[17px] text-base text-black/80 focus:outline-[1.4px] focus:outline-validateGreen focus:outline-offset-0
         focus:border-none invalid:outline-invalidatePink invalid:outline-offset-0 invalid:outline-[1.4px] invalid:border-none `}
         {...props}
       />
+      {type === "password" && (
+        <div
+          className="absolute top-1/2 xl:right-2/3 sm:right-1/2 sm:translate-x-2 md:right-2/3 lg:-translate-x-8 
+          md:translate-x-14 transform
+           -translate-y-1/2 xl:-translate-x-5 right-1/2 translate-x-6 max-[320px]:right-1/4 max-[320px]:translate-x-10
+            cursor-pointer"
+          onClick={toggleShowPassword}
+        >
+          {showPassword ? (
+            <FaRegEyeSlash className="text-green sm:text-xl text-lg" />
+          ) : (
+            <FaRegEye className="text-green sm:text-xl text-lg" />
+          )}
+        </div>
+      )}
+      {type === "file" && (
+        <>
+          <div
+            data-tooltip-target="tooltip-light"
+            data-tooltip-style="light"
+            className="absolute top-1/2 xl:right-2/3 sm:right-1/2 sm:translate-x-2 md:right-2/3 
+            lg:-translate-x-8 md:translate-x-14 transform
+           -translate-y-1/2 xl:-translate-x-5 right-1/2 translate-x-6 max-[320px]:right-1/4 
+           max-[320px]:translate-x-10
+            cursor-pointer "
+            onMouseEnter={() => setShowTooltip(true)}
+            onMouseLeave={() => setShowTooltip(false)}
+          >
+            <IoInformationCircleOutline className="text-green sm:text-xl text-lg" />
+          </div>
+          {showTooltip && (
+            <div
+              id="tooltip-light"
+              role="tooltip"
+              className="absolute border border-validateGreen z-10 inline-block font-karla capitalize p-1 sm:px-2 sm:py-2 text-sm font-medium
+             text-black/70 transition-opacity duration-300 bg-white rounded-md shadow-sm 
+              tooltip xl:-top-6 xl:left-1/3 xl:-translate-x-[120px] sm:-top-7 sm:left-1/3 sm:-translate-x-[0px]
+              md:-translate-x-[36px] lg:-translate-x-[120px] -top-5 left-1/3 max-[320px]:text-xs 
+              max-[320px]:translate-x-[50px] max-[320px]:-top-4 "
+            >
+              upload profile picture
+              <div className="tooltip-arrow" data-popper-arrow></div>
+            </div>
+          )}
+        </>
+      )}
       {label && (
         <label
-          className={`absolute italic font-karla font-medium bg-creamWhite xl:px-1 px-[2px] 
+          className={`${labelClassName} absolute italic font-karla font-medium xl:px-1 px-[2px] 
          duration-500 text-black/80 
           xl:mt-2 xl:ml-4 sm:mt-1 sm:ml-3 mt-1 ml-3 ${
-            value
-              ? "text-validateGreen xl:text-[15px] xl:-translate-y-5 sm:text-sm sm:-translate-y-4 text-sm -translate-y-4"
+            field.value
+              ? "text-green/80 xl:text-[15px] xl:-translate-y-5 sm:text-sm sm:-translate-y-4 text-sm -translate-y-4"
               : "xl:text-[22px] sm:text-[20px] text-lg"
           } peer-focus:text-validateGreen peer-focus:xl:text-[15px] peer-focus:xl:-translate-y-5
           peer-focus:sm:text-sm peer-focus:sm:-translate-y-4 peer-focus:text-sm peer-focus:-translate-y-4`}
