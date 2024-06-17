@@ -1,11 +1,42 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ItemCard } from "./index.js";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import itemService from "../appwrite/ItemService.js";
+import { useDispatch } from "react-redux";
+import {
+  addItemToCart,
+  removeItemFromCart,
+} from "../store/features/cart/cartSlice.js";
 
-function ItemCarousel({ specialItems }) {
+function ItemCarousel() {
+  const dispatch = useDispatch();
+
+  const [specialItem, setSpecialItem] = useState([]);
   const carouselRef = useRef(null);
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
+
+  const handleAddItem = (item) => {
+    dispatch(addItemToCart(item));
+  };
+
+  const handleRemoveItem = (id) => {
+    dispatch(removeItemFromCart(id));
+  };
+
+  const fetchItems = async () => {
+    try {
+      const items = await itemService.getAllItems();
+      const special = items.filter((item) => item.is_special === true);
+      setSpecialItem(special);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
 
   const handleScroll = () => {
     const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
@@ -45,17 +76,18 @@ function ItemCarousel({ specialItems }) {
       </button>
       <div
         ref={carouselRef}
-        className="flex py-4 px-3 items-center scroll-smooth overflow-hidden xl:gap-9 xl:w-[1060px] 
+        className="flex py-4 px-3 items-start scroll-smooth overflow-hidden xl:gap-9 xl:w-[1060px] 
         sm:gap-7 sm:w-[840px] gap-6 w-[480px] "
       >
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
+        {specialItem.map((item) => (
+          <ItemCard
+            key={item.$id}
+            image={itemService.getImagePreview(item.item_image).href}
+            item={item}
+            onAddItem={handleAddItem}
+            onRemoveItem={handleRemoveItem}
+          />
+        ))}
       </div>
       <button
         className={`absolute -right-10 z-10 bg-white rounded-full border border-transparent xl:p-4 sm:p-3 p-2 shadow-md 

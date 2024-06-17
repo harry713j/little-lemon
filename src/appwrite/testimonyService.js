@@ -1,9 +1,10 @@
-import { Client, ID, Databases, Query } from "appwrite";
+import { Client, ID, Databases, Query, Storage } from "appwrite";
 import environment_variables from "../environment_import/environmentVariables";
 
 class TestimonyService {
   client = new Client();
   database;
+  storage;
 
   constructor() {
     this.client
@@ -11,6 +12,7 @@ class TestimonyService {
       .setProject(environment_variables.appwriteProjectId);
 
     this.database = new Databases(this.client);
+    this.storage = new Storage(this.client);
   }
 
   async addReview({ review, ratings, userId }) {
@@ -51,8 +53,14 @@ class TestimonyService {
       throw new Error("Failed to get reviews", error);
     }
   }
-}
 
+  getImagePreview(imageId) {
+    return this.storage.getFilePreview(
+      environment_variables.appwriteProfileImageBucketId,
+      imageId
+    );
+  }
+}
 const testimonyService = new TestimonyService();
 
 export default testimonyService;

@@ -1,5 +1,5 @@
 import environment_variables from "../environment_import/environmentVariables";
-import { Client, ID, Storage, Databases } from "appwrite";
+import { Client, ID, Storage, Databases, Query } from "appwrite";
 
 class ItemService {
   client = new Client();
@@ -103,11 +103,12 @@ class ItemService {
     }
   }
 
-  async getItems() {
+  async getItems(limit, offset) {
     try {
       const items = await this.database.listDocuments(
         environment_variables.appwriteDatabaseId,
-        environment_variables.appwriteCollectionItemId
+        environment_variables.appwriteCollectionItemId,
+        [Query.limit(limit), Query.offset(offset)]
       );
       return items.documents;
     } catch (error) {
@@ -115,7 +116,26 @@ class ItemService {
     }
   }
 
-  async getImagePreview(imageId) {
+  async getAllItems() {
+    try {
+      let allItems = [];
+      let offset = 0;
+      let limit = 25;
+      let fetchedItems;
+
+      do {
+        fetchedItems = await this.getItems(limit, offset);
+        allItems = allItems.concat(fetchedItems);
+        offset += limit;
+      } while (fetchedItems.length === limit);
+
+      return allItems;
+    } catch (error) {
+      throw new Error("failed to get all items", error);
+    }
+  }
+
+  getImagePreview(imageId) {
     return this.storage.getFilePreview(
       environment_variables.appwriteItemImageBucketId,
       imageId
