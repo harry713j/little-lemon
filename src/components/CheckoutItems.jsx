@@ -14,7 +14,7 @@ function CheckoutItems() {
   // console.log(cart);
 
   const handleRemoveItem = (id) => {
-    dispatch(removeItemFromCart({ id }));
+    dispatch(removeItemFromCart(id));
   };
 
   const handleItemQuantity = (id, quantity) => {

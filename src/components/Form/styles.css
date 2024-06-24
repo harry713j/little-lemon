@@ -1,0 +1,116 @@
+.custom-text-field {
+  display: flex;
+  flex-direction: column;
+  background-color: inherit;
+
+  .MuiInputBase-root {
+    width: 100%;
+    height: 40px;
+    background-color: inherit;
+
+    border-bottom: 1px solid rgba(73, 94, 87, 0.7);
+
+    padding: 4px 0 4px 20px;
+    font-family: "Karla", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: rgba(51, 51, 51, 0.8);
+    outline: none;
+
+    fieldset {
+      border: none;
+    }
+
+    &.Mui-focused {
+      border-bottom: 1.4px solid #58b9ef;
+      outline-color: transparent;
+    }
+
+    &.Mui-error {
+      border-bottom: 1.4px solid #ff5d91;
+      outline: transparent;
+    }
+  }
+
+  .MuiInputLabel-root {
+    font-style: italic;
+    color: rgba(51, 51, 51, 0.8);
+    font-family: "Karla", sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+    margin-left: 20px;
+
+    &.Mui-focused,
+    &.MuiInputLabel-shrink {
+      transform: translateY(-1px) translateX(4px);
+      color: #58b9ef;
+      font-size: 15px;
+    }
+  }
+
+  /* responsive break points */
+  @media (min-width: 640px) and (max-width: 1279px) {
+    .MuiInputBase-root {
+      width: 100%;
+      height: 34px;
+      font-size: 17px;
+    }
+
+    .MuiInputLabel-root {
+      padding: 0 2px;
+      font-size: 20px;
+    }
+
+    .MuiInputLabel-root.Mui-focused,
+    .MuiInputLabel-root.MuiInputLabel-shrink {
+      font-size: 14px;
+      transform: translateY(-1px);
+    }
+  }
+
+  /* For screens less than 640px */
+  @media (max-width: 639px) {
+    .MuiInputBase-root {
+      width: 100%;
+      height: 32px;
+      font-size: 16px;
+      padding: 3px 0 3px 18px;
+    }
+
+    .MuiInputLabel-root {
+      padding: 0 2px;
+      font-size: 18px;
+      margin-left: 18px;
+    }
+
+    .MuiInputLabel-root.Mui-focused,
+    .MuiInputLabel-root.MuiInputLabel-shrink {
+      font-size: 13px;
+      transform: translateY(-1px);
+    }
+  }
+
+  @media (max-width: 320px) {
+    .MuiInputBase-root {
+      width: 100%;
+    }
+  }
+
+  .MuiInput-underline:before,
+  .MuiInput-underline:after {
+    border-bottom: none;
+  }
+
+  .MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-bottom: none;
+  }
+
+  .MuiInput-root.Mui-disabled {
+    &::before,
+    &::after {
+      border-bottom: none;
+    }
+  }
+}

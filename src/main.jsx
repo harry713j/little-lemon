@@ -10,9 +10,15 @@ import {
 } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
+import Signup from "./pages/Signup.jsx";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route path="/" element={<App />}></Route>)
+  createRoutesFromElements(
+    <>
+      <Route path="/" element={<App />}></Route>
+      <Route path="/signup" element={<Signup />} />
+    </>
+  )
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -5,6 +5,7 @@ import {
   Select,
   CustomDatePicker,
   CustomTimePicker,
+  Button,
 } from "../index.js";
 import { useForm } from "react-hook-form";
 import { occasions, noOfGuests } from "../../utility/optionsData.js";
@@ -102,6 +103,13 @@ function ReservationForm() {
           name="requests"
           control={control}
         />
+
+        <Button
+          type="submit"
+          className="bg-yellow w-full hover:bg-darkYellow xl:mt-6 sm:mt-4 mt-3"
+        >
+          create account
+        </Button>
       </form>
     </section>
   );

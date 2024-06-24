@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import RadioButton from "./RadioButton";
 import { useController } from "react-hook-form";
 
-function RadioButtonGroup({ name, control, rules, defaultValue = null }) {
+function RadioButtonGroupGender({
+  className,
+  options,
+  name,
+  control,
+  rules,
+  defaultValue = null,
+}) {
   const { field, fieldState } = useController({
     name,
     control,
@@ -10,13 +17,8 @@ function RadioButtonGroup({ name, control, rules, defaultValue = null }) {
     defaultValue,
   });
 
-  const options = [
-    { label: "Male", value: "male" },
-    { label: "Female", value: "female" },
-  ];
-
   return (
-    <div className="flex items-center xl:space-x-6 space-x-4">
+    <div className={`${className} flex items-center xl:space-x-6 space-x-4`}>
       {options.map((option) => (
         <RadioButton
           key={option.value}
@@ -30,4 +32,4 @@ function RadioButtonGroup({ name, control, rules, defaultValue = null }) {
   );
 }
 
-export default RadioButtonGroup;
+export default RadioButtonGroupGender;

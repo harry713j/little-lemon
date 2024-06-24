@@ -18,6 +18,7 @@ const environment_variables = {
   appwriteProfileImageBucketId: String(
     import.meta.env.VITE_APPWRITE_BUCKET_ID_2
   ),
+  googleMapAPIKey: String(import.meta.env.VITE_GOOGLE_MAP_API_KEY),
 };
 
 export default environment_variables;

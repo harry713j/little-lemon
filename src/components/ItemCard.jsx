@@ -19,7 +19,7 @@ function ItemCard({ image, item, onAddItem, onRemoveItem }) {
       >
         <span className="flex items-center justify-between font-karla font-bold sm:text-lg sm:leading-[21px] text-base leading-[18px] xl:mb-3 mb-2">
           <span className="text-black capitalize ">{item.item_name}</span>
-          <span className="text-coral w-1/5 text-end ">${item.price}</span>
+          <span className="text-coral w-1/5 text-end ">${(item.price).toFixed(2)}</span>
         </span>
 
         <span className="font-karla font-medium xl:text-base sm:text-sm text-xs xl:mb-5 sm:mb-4 mb-3 text-black/80 text-wrap break-words xl:leading-[19px] sm:leading-[16.5px] leading-[14px] ">

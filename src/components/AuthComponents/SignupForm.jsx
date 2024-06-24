@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, RadioButtonGroup } from "../index";
+import { Button, Input, RadioButtonGroupGender } from "../index";
 import { useForm } from "react-hook-form";
 import authService from "../../appwrite/authentication";
 import { Link } from "react-router-dom";
@@ -12,6 +12,11 @@ function SignupForm() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const { control, handleSubmit } = useForm();
+
+  const options = [
+    { label: "Male", value: "male" },
+    { label: "Female", value: "female" },
+  ];
 
   const createUser = async (data) => {
     setError(null);
@@ -104,7 +109,8 @@ function SignupForm() {
               },
             }}
           />
-          <RadioButtonGroup
+          <RadioButtonGroupGender
+            options={options}
             name="gender"
             control={control}
             rules={{ required: "Gender is required" }}

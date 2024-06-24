@@ -17,4 +17,6 @@ const occasions = [
   "others",
 ];
 
-export { noOfGuests, occasions };
+const restaurantPositions = { lat: 41.89022, lng: -87.6339 };
+
+export { noOfGuests, occasions, restaurantPositions };

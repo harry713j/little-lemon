@@ -21,10 +21,14 @@ import CustomTimePicker from "./DateTimePicker/CustomTimePicker";
 import SignupForm from "./AuthComponents/SignupForm";
 import LoginForm from "./AuthComponents/LoginForm";
 import RadioButton from "./RadioButton";
-import RadioButtonGroup from "./RadioButtonGroup";
+import RadioButtonGroupGender from "./RadioButtonGroup";
 import CheckoutItems from "./CheckoutItems";
 import ReservationForm from "./Form/ReservationForm";
 import CheckoutForm from "./Form/CheckoutForm";
+import RestaurantDetails from "./RestaurantDetails";
+import AddressInput from "./Form/AddressInput";
+import RadioButtonGroupPayOption from "./RadioButtonGroupPayOption";
+import AuthLayout from "./AuthLayout";
 
 export {
   Input,
@@ -50,8 +54,12 @@ export {
   SignupForm,
   LoginForm,
   RadioButton,
-  RadioButtonGroup,
+  RadioButtonGroupGender,
+  RadioButtonGroupPayOption,
   CheckoutItems,
   ReservationForm,
   CheckoutForm,
+  RestaurantDetails,
+  AddressInput,
+  AuthLayout,
 };
