@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="xl:px-[100px] md:px-[44px] px-[24px]">
+      <main className="relative xl:px-[100px] md:px-[44px] px-[24px]">
         <Outlet />
       </main>
       <Footer />

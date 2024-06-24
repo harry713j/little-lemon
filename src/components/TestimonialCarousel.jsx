@@ -75,10 +75,10 @@ function TestimonialCarousel() {
   return (
     <div
       className="relative mx-auto flex items-center scroll-smooth justify-center xl:w-[840px] p-1 
-    sm:w-[556px] w-[384px] "
+    sm:w-[556px] w-[384px] max-[320px]:w-[296px] "
     >
       <button
-        className={`absolute -left-10 z-10 bg-white rounded-full border border-transparent xl:p-4 sm:p-3 p-2 shadow-md 
+        className={`absolute -left-6 max-[320px]:-left-4 sm:-left-10 z-10 bg-white rounded-full border border-transparent xl:p-4 sm:p-3 p-2 shadow-md 
       hover:bg-white/40 active:border active:border-green/70 disabled:opacity-50 disabled:cursor-not-allowed `}
         onClick={handlePrevious}
         disabled={isPrevDisabled}
@@ -102,7 +102,7 @@ function TestimonialCarousel() {
         ))}
       </div>
       <button
-        className={`absolute -right-10 z-10 bg-white rounded-full border border-transparent xl:p-4 sm:p-3 p-2 shadow-md 
+        className={`absolute -right-6 max-[320px]:-right-4 sm:-right-10 z-10 bg-white rounded-full border border-transparent xl:p-4 sm:p-3 p-2 shadow-md 
       hover:bg-white/40 active:border active:border-green/70 disabled:opacity-50 disabled:cursor-not-allowed `}
         onClick={handleNext}
         disabled={isNextDisabled}

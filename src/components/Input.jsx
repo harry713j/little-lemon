@@ -32,10 +32,7 @@ const Input = React.forwardRef(function (
   };
 
   return (
-    <div
-      className="relative flex flex-col 
-    "
-    >
+    <div className="relative flex flex-col ">
       <input
         id={id}
         type={showPassword ? "text" : type}
@@ -50,9 +47,8 @@ const Input = React.forwardRef(function (
       />
       {type === "password" && (
         <div
-          className="absolute top-1/2 xl:right-2/3 sm:right-1/2 sm:translate-x-2 md:right-2/3 lg:-translate-x-8 
-          md:translate-x-14 transform
-           -translate-y-1/2 xl:-translate-x-5 right-1/2 translate-x-6 max-[320px]:right-1/4 max-[320px]:translate-x-10
+          className="absolute top-1/2 sm:-translate-x-4 transform
+           -translate-y-1/2 xl:-translate-x-5 right-0 -translate-x-3
             cursor-pointer"
           onClick={toggleShowPassword}
         >
@@ -68,25 +64,23 @@ const Input = React.forwardRef(function (
           <div
             data-tooltip-target="tooltip-light"
             data-tooltip-style="light"
-            className="absolute top-1/2 xl:right-2/3 sm:right-1/2 sm:translate-x-2 md:right-2/3 
-            lg:-translate-x-8 md:translate-x-14 transform
-           -translate-y-1/2 xl:-translate-x-5 right-1/2 translate-x-6 max-[320px]:right-1/4 
-           max-[320px]:translate-x-10
+            className="absolute top-1/2 sm:-translate-x-4 transform
+           -translate-y-1/2 xl:-translate-x-5 right-0 -translate-x-3
             cursor-pointer "
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
           >
-            <IoInformationCircleOutline className="text-green sm:text-xl text-lg" />
+            <IoInformationCircleOutline className="text-green sm:text-xl text-lg hover:bg-green/40 rounded-full" />
           </div>
           {showTooltip && (
             <div
               id="tooltip-light"
               role="tooltip"
-              className="absolute border border-validateGreen z-10 inline-block font-karla capitalize p-1 sm:px-2 sm:py-2 text-sm font-medium
+              className="absolute border text-center border-yellow/60 z-10 inline-block font-karla 
+              capitalize p-1 sm:px-1.5 sm:py-2 text-xs font-medium
              text-black/70 transition-opacity duration-300 bg-white rounded-md shadow-sm 
-              tooltip xl:-top-6 xl:left-1/3 xl:-translate-x-[120px] sm:-top-7 sm:left-1/3 sm:-translate-x-[0px]
-              md:-translate-x-[36px] lg:-translate-x-[120px] -top-5 left-1/3 max-[320px]:text-xs 
-              max-[320px]:translate-x-[50px] max-[320px]:-top-4 "
+              tooltip xl:-top-10 xl:right-0 xl:w-28 xl:translate-x-[21px] sm:w-24 sm:-top-10 sm:right-0 
+              sm:translate-x-[21px] -top-[34px] right-0 w-[90px] translate-x-[24px] "
             >
               upload profile picture
               <div className="tooltip-arrow" data-popper-arrow></div>

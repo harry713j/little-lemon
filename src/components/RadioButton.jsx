@@ -10,7 +10,7 @@ function RadioButton({ label, value, checked, onChange }) {
         onChange={onChange}
         className="form-radio h-4 w-4 text-indigo-600 focus:ring-indigo-600"
       />
-      <span className="font-karla font-medium text-black/80 xl:text-[18px] sm:text-[16px] text-sm">
+      <span className="font-karla font-normal text-black/80 xl:text-[17px] sm:text-[15px] text-[13px]">
         {label}
       </span>
     </label>

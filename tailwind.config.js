@@ -23,6 +23,13 @@ export default {
         lightGreen: "#217D5F",
         darkYellow: "#E4BF09",
       },
+      backgroundImage: {
+        lemon: "url('./src/assets/lemon-background.jpg')",
+        food: "url('./src/assets/restaurant-food.jpg')",
+        delicious_meal: "url('./src/assets/delicious-meal.jpg')",
+        dinning_table: "url('./src/assets/dinning-table.jpg')",
+        restaurant_interior: "url('./src/assets/interior-restaurant.jpg')",
+      },
     },
   },
   plugins: [],

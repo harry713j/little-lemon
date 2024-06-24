@@ -10,13 +10,40 @@ import {
 } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
+import { AuthLayout as AuthLayer } from "./components/index.js";
 import Signup from "./pages/Signup.jsx";
+import Login from "./pages/Login.jsx";
+import Home from "./pages/Home.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<App />}></Route>
-      <Route path="/signup" element={<Signup />} />
+      <Route path="/" element={<App />}>
+        <Route
+          index
+          element={
+            <AuthLayer authentication={false}>
+              <Home />
+            </AuthLayer>
+          }
+        />
+      </Route>
+      <Route
+        path="/signup"
+        element={
+          <AuthLayer authentication={false}>
+            <Signup />
+          </AuthLayer>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <AuthLayer authentication={false}>
+            <Login />
+          </AuthLayer>
+        }
+      />
     </>
   )
 );

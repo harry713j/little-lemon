@@ -67,7 +67,7 @@ function ItemCarousel() {
   return (
     <div className="relative flex items-center scroll-smooth justify-center w-full ">
       <button
-        className={`absolute -left-10 z-10 bg-white rounded-full border border-transparent xl:p-4 sm:p-3 p-2 shadow-md 
+        className={`absolute -left-6 sm:-left-10 z-10 bg-white rounded-full border border-transparent xl:p-4 sm:p-3 p-2 shadow-md 
       hover:bg-white/40 active:border active:border-green/70 disabled:opacity-50 disabled:cursor-not-allowed `}
         onClick={handlePrevious}
         disabled={isPrevDisabled}
@@ -90,7 +90,7 @@ function ItemCarousel() {
         ))}
       </div>
       <button
-        className={`absolute -right-10 z-10 bg-white rounded-full border border-transparent xl:p-4 sm:p-3 p-2 shadow-md 
+        className={`absolute -right-6 sm:-right-10 z-10 bg-white rounded-full border border-transparent xl:p-4 sm:p-3 p-2 shadow-md 
       hover:bg-white/40 active:border active:border-green/70 disabled:opacity-50 disabled:cursor-not-allowed`}
         onClick={handleNext}
         disabled={isNextDisabled}

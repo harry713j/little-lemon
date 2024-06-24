@@ -16,6 +16,7 @@ function SignupForm() {
   const options = [
     { label: "Male", value: "male" },
     { label: "Female", value: "female" },
+    { label: "Other", value: "other" },
   ];
 
   const createUser = async (data) => {
@@ -38,7 +39,7 @@ function SignupForm() {
   return (
     <section
       className="bg-white flex items-center justify-center xl:w-1/2 sm:w-2/3 w-full 
-      xl:pt-8 sm:pt-6 pt-5 xl:pb-20 sm:pb-16 pb-14 xl:px-24 sm:px-[72px] px-[60px]
+      xl:pt-8 sm:pt-6 pt-5 xl:pb-20 sm:pb-16 pb-14 xl:px-24 sm:px-[72px] px-[52px]
      xl:rounded-lg rounded-md shadow-xl"
     >
       <div className="flex flex-col">

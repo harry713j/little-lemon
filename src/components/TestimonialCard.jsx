@@ -5,7 +5,7 @@ import { HiStar, HiOutlineStar } from "react-icons/hi2";
 function TestimonialCard({ review, profile, name, ratings }) {
   return (
     <div
-      className="xl:w-[800px] sm:w-[520px] w-[360px] h-auto 
+      className="xl:w-[800px] sm:w-[520px] w-[360px] max-[320px]:w-[268px] h-auto 
     shadow-lg flex-shrink-0 flex flex-col items-center xl:mx-4 sm:mx-3 mx-2 "
     >
       <div
@@ -14,7 +14,8 @@ function TestimonialCard({ review, profile, name, ratings }) {
       >
         <p
           className="font-karla font-medium mb-4 text-black xl:text-xl xl:leading-[24px] 
-        sm:text-lg sm:leading-[21.5px] text-base leading-[19.2px] "
+        sm:text-lg sm:leading-[21.5px] text-base leading-[19.2px] max-[320px]:text-sm 
+        max-[320px]:leading-[16.6px] "
         >
           {review}
         </p>
@@ -35,7 +36,10 @@ function TestimonialCard({ review, profile, name, ratings }) {
           />
         </span>
 
-        <span className="font-karla font-extrabold mt-2 text-bluishWhite lg:text-xl sm:text-lg text-base">
+        <span
+          className="font-karla font-extrabold mt-2 text-bluishWhite lg:text-xl sm:text-lg text-base 
+        max-[320px]:text-[14px]"
+        >
           {name}
         </span>
         <span className="flex items-center sm:gap-[2px] gap-[1px]">

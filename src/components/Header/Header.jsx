@@ -12,14 +12,14 @@ function Header() {
     { name: "Reservations", slug: "/reservation" },
   ];
   return (
-    <header className="relative xl:px-[100px] md:px-[44px] px-[24px] my-2">
+    <header className="relative bg-inherit xl:px-[100px] md:px-[44px] px-[24px] my-2">
       <nav className="flex items-center justify-between ">
-        <div className="w-2/5">
+        <div className=" ">
           <Link to="/">
             <MainLogo className="xl:w-[200px] sm:w-[160px] w-[120px] " />
           </Link>
         </div>
-        <div className="md:flex w-3/5 items-center hidden justify-end">
+        <div className="md:flex items-center hidden justify-end">
           <ul className="flex items-center xl:gap-11 md:gap-5 md:mr-4 lg:mr-8 lg:gap-8 ">
             {navItems.map((item) => (
               <li key={item.name}>
