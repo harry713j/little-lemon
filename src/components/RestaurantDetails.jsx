@@ -15,13 +15,17 @@ function RestaurantDetails() {
   const [open, setOpen] = useState(false);
   return (
     <section>
-      <article className="flex items-center justify-between">
+      <article
+        className="flex items-center justify-between max-[320px]:flex-col max-[320px]:items-start 
+        max-[320px]:space-y-5
+       xl:mb-[60px] sm:mb-[44px] mb-[28px]"
+      >
         <div className="flex flex-col justify-center space-y-2.5">
           <span className="flex items-center space-x-2">
-            <FaLocationDot className="inline-block text-green xl:text-xl text-lg" />
+            <FaLocationDot className="inline-block text-green xl:text-xl text-lg max-[320px]:text-[15px]" />
             <p
               className="font-karla font-medium cursor-pointer text-green hover:underline
-           xl:text-base sm:text-[15px] text-sm"
+           xl:text-base sm:text-[15px] text-sm max-[320px]:text-xs"
             >
               <a
                 className="inline-block"
@@ -33,10 +37,10 @@ function RestaurantDetails() {
             </p>
           </span>
           <span className="flex items-center space-x-3">
-            <MdEmail className="inline-block text-green xl:text-xl text-lg" />
+            <MdEmail className="inline-block text-green xl:text-xl text-lg max-[320px]:text-[15px]" />
             <p
               className="font-karla font-medium text-green hover:underline
-             xl:text-base sm:text-[15px] text-sm"
+             xl:text-base sm:text-[15px] text-sm max-[320px]:text-xs"
             >
               <a className="inline-block" href="mailTo:littlelemon@email.com">
                 littlelemon@email.com
@@ -44,10 +48,10 @@ function RestaurantDetails() {
             </p>
           </span>
           <span className="flex items-center space-x-3">
-            <BsTelephoneFill className="inline-block text-green xl:text-xl text-lg" />
+            <BsTelephoneFill className="inline-block text-green xl:text-xl text-lg max-[320px]:text-[15px]" />
             <p
               className="font-karla font-medium text-green hover:underline
-             xl:text-base sm:text-[15px] text-sm"
+             xl:text-base sm:text-[15px] text-sm max-[320px]:text-xs"
             >
               <a className="inline-block" href="tel:+1 (312) 555-1234">
                 +1 (312) 555-1234
@@ -55,14 +59,14 @@ function RestaurantDetails() {
             </p>
           </span>
         </div>
-        <div className="flex flex-col justify-center space-y-2.5">
-          <p className="font-karla font-medium text-green xl:text-base sm:text-[15px] text-sm">
+        <div className="flex flex-col justify-center space-y-2.5 max-[320px]:ml-4">
+          <p className="font-karla font-medium text-green xl:text-base sm:text-[15px] text-sm max-[320px]:text-xs">
             Monday to Saturday
           </p>
-          <p className="font-karla font-medium text-green xl:text-base sm:text-[15px] text-sm">
+          <p className="font-karla font-medium text-green xl:text-base sm:text-[15px] text-sm max-[320px]:text-xs">
             9.00 AM - 10.00 PM
           </p>
-          <p className="font-karla font-medium text-green xl:text-base sm:text-[15px] text-sm">
+          <p className="font-karla font-medium text-green xl:text-base sm:text-[15px] text-sm max-[320px]:text-xs">
             Sunday - Closed
           </p>
         </div>

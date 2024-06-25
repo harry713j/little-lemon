@@ -44,7 +44,7 @@ function AllMenu() {
   }, []);
 
   return (
-    <div className="xl:px-[100px] sm:px-[60px] px-[32px] xl:mb-[200px] sm:mb-[160px] mb-[100px] ">
+    <div className=" xl:mb-[200px] sm:mb-[160px] mb-[100px] ">
       {allItems.length > 0 ? (
         <div className="">
           <h1 className="font-markazi font-medium text-black capitalize xl:text-[40px] sm:text-[34px] text-[28px]">

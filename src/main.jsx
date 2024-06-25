@@ -14,6 +14,8 @@ import { AuthLayout as AuthLayer } from "./components/index.js";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
+import Menu from "./pages/Menu.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +26,22 @@ const router = createBrowserRouter(
           element={
             <AuthLayer authentication={false}>
               <Home />
+            </AuthLayer>
+          }
+        />
+        <Route
+          path="about"
+          element={
+            <AuthLayer authentication={false}>
+              <About />
+            </AuthLayer>
+          }
+        />
+        <Route
+          path="menu"
+          element={
+            <AuthLayer authentication={false}>
+              <Menu />
             </AuthLayer>
           }
         />

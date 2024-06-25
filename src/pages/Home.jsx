@@ -13,7 +13,7 @@ function Home() {
         before:absolute before:inset-0 before:block before:bg-gradient-to-r before:from-green before:to-green
         before:opacity-70 before:z-[-7]"
         >
-          <div className="flex flex-col mx-auto sm:w-1/2 w-2/3 max-[320px]:w-4/5 items-center xl:py-8 sm:py-6 py-4">
+          <div className="flex flex-col text-center mx-auto sm:w-1/2 w-2/3 max-[320px]:w-4/5 items-center xl:py-8 sm:py-6 py-4">
             <h1 className="font-markazi font-medium text-yellow xl:text-[60px] sm:text-[44px] text-[30px]">
               Little Lemon
             </h1>
