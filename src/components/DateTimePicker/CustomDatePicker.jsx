@@ -26,7 +26,7 @@ function CustomDatePicker({ name, control, rules, defaultValue = null }) {
     <Box>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
-          label="Date"
+          label="Date*"
           value={value}
           onChange={handleDateChange}
           format="LL"

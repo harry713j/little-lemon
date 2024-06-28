@@ -28,7 +28,7 @@ function CustomTimePicker({ name, control, rules, defaultValue = null }) {
     <Box>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <TimePicker
-          label="Time"
+          label="Time*"
           value={value}
           onChange={handleTimeChange}
           viewRenderers={{

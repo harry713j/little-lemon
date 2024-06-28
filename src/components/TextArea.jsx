@@ -31,7 +31,7 @@ const TextArea = React.forwardRef(function (
         ref={ref}
         value={field.value}
         onChange={field.onChange}
-        className={`${className} peer resize-none bg-inherit leading-tight inline-block bg-white xl:w-[400px] xl:h-32 
+        className={`${className} peer resize-none bg-inherit leading-tight inline-block xl:w-[400px] xl:h-32 
         sm:w-[300px] sm:h-28 w-[240px] max-[320px]:w-[220px] h-24 xl:rounded-lg rounded-md px-3 py-2 outline-none 
         border border-green/70 xl:px-5 xl:py-3 duration-300 font-karla font-medium xl:text-sm text-xs text-black/80 
         focus:outline-[1.4px] focus:outline-validateGreen focus:outline-offset-0

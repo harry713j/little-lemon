@@ -16,6 +16,8 @@ import Login from "./pages/Login.jsx";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Menu from "./pages/Menu.jsx";
+import Reservation from "./pages/Reservation.jsx";
+import Checkout from "./pages/Checkout.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,6 +44,22 @@ const router = createBrowserRouter(
           element={
             <AuthLayer authentication={false}>
               <Menu />
+            </AuthLayer>
+          }
+        />
+        <Route
+          path="reservation"
+          element={
+            <AuthLayer authentication={false}>
+              <Reservation />
+            </AuthLayer>
+          }
+        />
+        <Route
+          path="checkout"
+          element={
+            <AuthLayer authentication={false}>
+              <Checkout />
             </AuthLayer>
           }
         />

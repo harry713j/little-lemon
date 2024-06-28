@@ -63,7 +63,7 @@ function Header() {
           className={`${
             isMenuOpen ? "top-full" : "-top-full"
           } absolute right-0 md:hidden w-full flex flex-col items-center bg-slate-300 
-        rounded-md z-10  shadow pb-3 transition-all duration-500 overflow-hidden`}
+        rounded-md z-50  shadow pb-3 transition-all duration-500 overflow-hidden`}
         >
           <ul className="flex flex-col w-full items-center">
             {navItems.map((item) => (

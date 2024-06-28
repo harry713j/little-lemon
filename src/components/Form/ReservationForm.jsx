@@ -29,15 +29,14 @@ function ReservationForm() {
   };
 
   return (
-    <section className="bg-white p-4 flex items-center justify-center">
+    <section className="bg-creamWhite p-4 flex items-center justify-center">
       <form
         onSubmit={handleSubmit(create)}
-        className="flex flex-col items-center justify-center xl:space-y-[18px] sm:space-y-[16px] space-y-[14px]"
+        className="flex flex-col items-start justify-center xl:space-y-[18px] sm:space-y-[16px] space-y-[14px]"
       >
         <Input
           label="Full Name*"
-          className="bg-white"
-          labelClassName="bg-white"
+          labelClassName="bg-creamWhite"
           name="fullName"
           control={control}
           rules={{
@@ -47,8 +46,7 @@ function ReservationForm() {
         <Input
           type="tel"
           label="Phone Number*"
-          className="bg-white"
-          labelClassName="bg-white"
+          labelClassName="bg-creamWhite"
           name="phoneNumber"
           control={control}
           rules={{
@@ -59,8 +57,7 @@ function ReservationForm() {
         <Input
           type="email"
           label="Email*"
-          className="bg-white"
-          labelClassName="bg-white"
+          labelClassName="bg-creamWhite"
           name="email"
           control={control}
           rules={{
@@ -85,7 +82,7 @@ function ReservationForm() {
         <Select
           options={noOfGuests}
           label="Number of People"
-          labelClassName="bg-white"
+          labelClassName="bg-creamWhite"
           name="guests"
           control={control}
           rules={{ required: "Number of People is required" }}
@@ -93,22 +90,22 @@ function ReservationForm() {
         <Select
           options={occasions}
           label="Occasions"
-          labelClassName="bg-white"
+          labelClassName="bg-creamWhite"
           name="occasions"
           control={control}
         />
         <TextArea
           label="Special Request(Optional)"
-          labelClassName="bg-white"
+          labelClassName="bg-creamWhite"
           name="requests"
           control={control}
         />
 
         <Button
           type="submit"
-          className="bg-yellow w-full hover:bg-darkYellow xl:mt-6 sm:mt-4 mt-3"
+          className="bg-yellow w-1/2 hover:bg-darkYellow xl:mt-6 sm:mt-4 mt-3"
         >
-          create account
+          submit
         </Button>
       </form>
     </section>

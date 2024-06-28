@@ -22,7 +22,7 @@ function CheckoutItems() {
   };
 
   return (
-    <div className="flex flex-col xl:space-y-2 space-y-1 ">
+    <div className="flex flex-col xl:space-y-2 space-y-1.5 ">
       {cart.map((item) => (
         <CheckoutItemCard
           key={item.$id}

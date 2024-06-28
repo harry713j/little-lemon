@@ -14,7 +14,7 @@ function CheckoutItemCard({ image, item, onRemoveItem, onQuantityChange }) {
   return (
     <div
       className="flex items-center flex-col sm:flex-row rounded shadow-lg bg-white xl:w-[720px] xl:h-32 xl:px-6 xl:py-4
-    sm:w-[560px] sm:h-28 sm:px-5 sm:py-3 w-[300px] py-2 px-3"
+    sm:w-[560px] sm:h-28 sm:px-5 sm:py-3 max-[320px]:w-[280px] w-[420px] py-2 px-3"
     >
       <div
         className="flex sm:w-1/2 w-full items-center justify-between sm:justify-start xl:gap-5 

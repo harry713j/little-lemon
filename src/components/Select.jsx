@@ -55,7 +55,7 @@ const Select = React.forwardRef(function (
     <div ref={dropdownRef} className="flex flex-col relative">
       <Button
         id={id}
-        className={`peer bg-inherit xl:w-[400px] xl:h-12 sm:w-[300px] sm:h-10 w-[240px] max-[320px]:w-[220px] h-9 xl:rounded-lg rounded-md px-3 py-2 outline-none 
+        className={`${className} peer bg-inherit xl:w-[400px] xl:h-12 sm:w-[300px] sm:h-10 w-[240px] max-[320px]:w-[220px] h-9 xl:rounded-lg rounded-md px-3 py-2 outline-none 
         border border-green/70 xl:px-6 xl:py-3 flex items-center justify-between capitalize duration-500 
         focus:outline-[1.4px] focus:outline-validateGreen focus:outline-offset-0
         focus:border-none `}
@@ -66,7 +66,7 @@ const Select = React.forwardRef(function (
         <span
           className={`font-karla font-medium xl:text-lg sm:text-[17px] text-base text-black/80 `}
         >
-          {field.value ? field.value : ""}
+          {selectedValue ? selectedValue : ""}
         </span>
 
         <BsChevronDown
@@ -79,7 +79,7 @@ const Select = React.forwardRef(function (
           className={`${labelClassName} absolute italic font-karla font-medium xl:px-1 px-[2px] 
          duration-500 text-black/80 peer-focus:text-validateGreen peer-focus:xl:text-[15px] peer-focus:xl:-translate-y-5
           xl:mt-2 xl:ml-4 sm:mt-1 sm:ml-3 peer-focus:sm:text-sm peer-focus:sm:-translate-y-4 ${
-            field.value
+            selectedValue
               ? "text-green/80 xl:text-[15px] xl:-translate-y-5 sm:text-sm sm:-translate-y-4 text-sm -translate-y-4"
               : "xl:text-[22px] sm:text-[20px] text-lg"
           } mt-1 ml-3 peer-focus:text-sm peer-focus:-translate-y-4`}
