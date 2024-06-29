@@ -10,6 +10,7 @@ import {
 import { useForm } from "react-hook-form";
 import { occasions, noOfGuests } from "../../utility/optionsData.js";
 import reservationService from "../../appwrite/reservationService.js";
+import { toast } from "react-toastify";
 
 function ReservationForm() {
   //TODO: setting up the mail service i.e. when user submit the reservation form they will get a confirmation
@@ -23,8 +24,10 @@ function ReservationForm() {
       console.log(data);
       const reservation = await reservationService.createReservation(data);
       // do other things after reservation
+      toast.success(`Reservation successful!`);
     } catch (error) {
       setError("Failed to reservation ");
+      toast.error("Reservation failed");
     }
   };
 
@@ -108,6 +111,11 @@ function ReservationForm() {
           submit
         </Button>
       </form>
+      {error && (
+        <p className="text-center font-karla font-normal text-red-500 xl:mt-5 sm:mt-4 mt-3">
+          {error}
+        </p>
+      )}
     </section>
   );
 }

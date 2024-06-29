@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function SignupForm() {
   const dispatch = useDispatch();
@@ -27,13 +28,15 @@ function SignupForm() {
       if (user) {
         const userData = await authService.getCurrentUser();
         // dispatch to the store to update the state
+        toast.success(`Account created successfully`);
         if (userData) {
           dispatch(login(userData));
         }
         navigate("/");
       }
     } catch (error) {
-      setError("Failed to create account");
+      setError("Something went wrong");
+      toast.error(`Failed to create account`);
     }
   };
   return (

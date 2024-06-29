@@ -7,6 +7,7 @@ import {
   addItemToCart,
   removeItemFromCart,
 } from "../store/features/cart/cartSlice.js";
+import { toast } from "react-toastify";
 
 function ItemCarousel() {
   const dispatch = useDispatch();
@@ -18,10 +19,12 @@ function ItemCarousel() {
 
   const handleAddItem = (item) => {
     dispatch(addItemToCart(item));
+    toast.success(`🥳 ${item.item_name} added to cart`);
   };
 
   const handleRemoveItem = (id) => {
     dispatch(removeItemFromCart(id));
+    toast.warn(`😒 Item removed from cart`);
   };
 
   const fetchItems = async () => {

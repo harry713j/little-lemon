@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login as storeLogin } from "../../store/features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Login() {
   const dispatch = useDispatch();
@@ -21,13 +22,15 @@ function Login() {
       if (session) {
         const userData = await authService.getCurrentUser();
         // dispatch to the store to update the state
+        toast.success(`Login successfully`);
         if (userData) {
           dispatch(storeLogin(userData));
         }
         navigate("/");
       }
     } catch (error) {
-      setError("Failed to login");
+      setError("Something went wrong");
+      toast.error("Failed to login");
     }
   };
   return (
