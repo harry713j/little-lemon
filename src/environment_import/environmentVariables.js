@@ -19,6 +19,10 @@ const environment_variables = {
     import.meta.env.VITE_APPWRITE_BUCKET_ID_2
   ),
   googleMapAPIKey: String(import.meta.env.VITE_GOOGLE_MAP_API_KEY),
+  emailjsAPIendpoint: String(import.meta.env.VITE_EMAILJS_API_ENDPOINT),
+  emailjsServiceId: String(import.meta.env.VITE_EMAILJS_SERVICE_ID),
+  emailjsTemplateId: String(import.meta.env.VITE_EMAILJS_TEMPLATE_ID),
+  emailjsUserId: String(import.meta.env.VITE_EMAILJS_USER_ID),
 };
 
 export default environment_variables;

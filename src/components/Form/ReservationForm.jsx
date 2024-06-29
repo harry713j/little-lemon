@@ -10,6 +10,7 @@ import {
 import { useForm } from "react-hook-form";
 import { occasions, noOfGuests } from "../../utility/optionsData.js";
 import reservationService from "../../appwrite/reservationService.js";
+import { sendEmail } from "../../email/emailService.js";
 import { toast } from "react-toastify";
 
 function ReservationForm() {
@@ -21,13 +22,15 @@ function ReservationForm() {
   const create = async (data) => {
     setError(null);
     try {
-      console.log(data);
       const reservation = await reservationService.createReservation(data);
       // do other things after reservation
-      toast.success(`Reservation successful!`);
+      await sendEmail(data);
+      toast.success(
+        `Reservation successful! Confirmation email has been sent.`
+      );
     } catch (error) {
       setError("Failed to reservation ");
-      toast.error("Reservation failed");
+      toast.error("Reservation failed! Please try again.");
     }
   };
 
