@@ -23,6 +23,7 @@ const environment_variables = {
   emailjsServiceId: String(import.meta.env.VITE_EMAILJS_SERVICE_ID),
   emailjsTemplateId: String(import.meta.env.VITE_EMAILJS_TEMPLATE_ID),
   emailjsUserId: String(import.meta.env.VITE_EMAILJS_USER_ID),
+  stripeAPIkey: String(import.meta.env.VITE_STRIPE_API_KEY),
 };
 
 export default environment_variables;

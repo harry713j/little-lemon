@@ -95,7 +95,7 @@ function Login() {
     sm:text-base text-[13px] "
         >
           <p>Don&apos;t have an account?&nbsp;</p>
-          <Link className="text-yellow hover:underline" to="/login">
+          <Link className="text-yellow hover:underline" to="/signup">
             Sign Up
           </Link>
           &nbsp;here

@@ -18,11 +18,13 @@ import About from "./pages/About.jsx";
 import Menu from "./pages/Menu.jsx";
 import Reservation from "./pages/Reservation.jsx";
 import Checkout from "./pages/Checkout.jsx";
+import NotFound from "./pages/NotFound.jsx";
+import Congratulation from "./pages/Congratulation.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<App />}>
+      <Route path="/" element={<App />} errorElement={<NotFound />}>
         <Route
           index
           element={
@@ -58,12 +60,20 @@ const router = createBrowserRouter(
         <Route
           path="checkout"
           element={
-            <AuthLayer authentication={false}>
+            <AuthLayer authentication={true}>
               <Checkout />
             </AuthLayer>
           }
         />
       </Route>
+      <Route
+        path="/congratulation"
+        element={
+          <AuthLayer authentication={true}>
+            <Congratulation />
+          </AuthLayer>
+        }
+      />
       <Route
         path="/signup"
         element={

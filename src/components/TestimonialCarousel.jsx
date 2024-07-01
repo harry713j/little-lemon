@@ -17,7 +17,6 @@ function TestimonialCarousel() {
   const getTestimonies = async () => {
     try {
       const data = await testimonyService.getReviews();
-      console.log(data);
       setTestimonies(data);
     } catch (error) {
       console.error(error);

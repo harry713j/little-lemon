@@ -20,7 +20,10 @@ const Input = React.forwardRef(function (
   const id = useId();
   const [showPassword, setShowPassword] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const { field, fieldState } = useController({
+  const {
+    field,
+    fieldState: { error },
+  } = useController({
     name,
     control,
     rules,
@@ -102,6 +105,11 @@ const Input = React.forwardRef(function (
         >
           {label}
         </label>
+      )}
+      {error && (
+        <p className="text-center font-karla font-normal text-red-500 xl:mt-5 sm:mt-4 mt-3">
+          {error}
+        </p>
       )}
     </div>
   );

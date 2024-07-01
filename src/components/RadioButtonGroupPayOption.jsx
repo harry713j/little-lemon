@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import RadioButton from "./RadioButton";
-import { useController } from "react-hook-form";
 
-function RadioButtonGroupPayOption({ className, options }) {
-  //   const { field, fieldState } = useController({
-  //     name,
-  //     control,
-  //     rules,
-  //     defaultValue,
-  //   });
-
-  const [selectedValue, setSelectedValue] = useState(null);
+const RadioButtonGroupPayOption = React.forwardRef(function (
+  { className, options },
+  ref
+) {
+  const [selectedValue, setSelectedValue] = useState("pay_on_delivery");
 
   return (
     <div
@@ -18,15 +13,17 @@ function RadioButtonGroupPayOption({ className, options }) {
     >
       {options.map((option) => (
         <RadioButton
+          ref={ref}
           key={option.value}
           label={option.label}
           value={option.value}
           checked={selectedValue === option.value}
           onChange={() => setSelectedValue(option.value)}
+          disabled={option.value === "pay_online_with_card"}
         />
       ))}
     </div>
   );
-}
+});
 
 export default RadioButtonGroupPayOption;

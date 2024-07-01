@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 function Cart() {
   const cart = useSelector((state) => state.cart.cart);
-  console.log(cart);
+
   return (
     <div className="relative group">
       <CgShoppingBag className=" text-green duration-500 group-hover:text-darkYellow xl:text-[28px] md:text-[26px] text-[24px]" />

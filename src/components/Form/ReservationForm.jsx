@@ -14,8 +14,6 @@ import { sendEmail } from "../../email/emailService.js";
 import { toast } from "react-toastify";
 
 function ReservationForm() {
-  //TODO: setting up the mail service i.e. when user submit the reservation form they will get a confirmation
-  // email
   const [error, setError] = useState(null);
   const { control, handleSubmit } = useForm();
 
@@ -23,7 +21,6 @@ function ReservationForm() {
     setError(null);
     try {
       const reservation = await reservationService.createReservation(data);
-      // do other things after reservation
       await sendEmail(data);
       toast.success(
         `Reservation successful! Confirmation email has been sent.`

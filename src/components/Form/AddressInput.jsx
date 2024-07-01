@@ -4,15 +4,18 @@ import { BiCurrentLocation } from "react-icons/bi";
 import "./styles.css";
 import environment_variables from "../../environment_import/environmentVariables";
 import { useJsApiLoader } from "@react-google-maps/api";
-import { restaurantPositions } from "../../utility/optionsData";
 
 const libraries = ["places"];
 
-function AddressInput() {
+const AddressInput = React.forwardRef(function (
+  { register, setValue, errors },
+  ref
+) {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: environment_variables.googleMapAPIKey,
     libraries: libraries,
   });
+
   const [autocomplete, setAutocomplete] = useState(null);
   const placeAutocompleteRef = useRef(null);
   const [selectedPlace, setSelectedPlace] = useState("");
@@ -39,11 +42,12 @@ function AddressInput() {
 
       autocompletePlaces.addListener("place_changed", () => {
         const place = autocompletePlaces.getPlace();
-        console.log(place);
+        // console.log(place);
         setSelectedPlace(place.formatted_address);
+        setValue("address", place.formatted_address);
       });
     }
-  }, [isLoaded]);
+  }, [isLoaded, setValue]);
 
   return (
     <>
@@ -55,6 +59,7 @@ function AddressInput() {
       >
         <BiCurrentLocation className="text-green text-xl mt-4 sm:-mr-4 -mr-3.5" />
         <TextField
+          ref={ref}
           inputRef={placeAutocompleteRef}
           label="Enter your location"
           variant="standard"
@@ -66,9 +71,16 @@ function AddressInput() {
             },
           }}
         />
+        <input
+          type="hidden"
+          {...register("address", { required: "Address is required" })}
+        />
       </Box>
+      {errors.address && (
+        <span className="text-red-500">{errors.address.message}</span>
+      )}
     </>
   );
-}
+});
 
 export default AddressInput;

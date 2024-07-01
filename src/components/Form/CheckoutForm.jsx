@@ -5,7 +5,10 @@ import {
   CheckoutItems,
   RadioButtonGroupPayOption,
 } from "../index.js";
-import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { removeAllItemsFromCart } from "../../store/features/cart/cartSlice.js";
 
 const payOptions = [
   { label: "Pay on Delivery", value: "pay_on_delivery" },
@@ -13,8 +16,15 @@ const payOptions = [
 ];
 
 function CheckoutForm() {
-  //TODO: integrating stripe api for payment with appwrite webhook
+  //TODO: integrating stripe api for payment
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm();
   const cart = useSelector((state) => state.cart.cart);
+  const dispatch = useDispatch();
   const [netPrice, setNetPrice] = useState(0);
   const deliveryFee = cart.length ? 10 : 0;
 
@@ -26,6 +36,21 @@ function CheckoutForm() {
     setNetPrice(totalPrice);
   }, [cart.length, cart]);
 
+  const proceedPay = (data) => {
+    const orderDetails = {
+      items: [...cart],
+      ...data,
+      totalPrice: netPrice,
+    };
+    console.log(orderDetails);
+    toast.success("Your order has placed!");
+    dispatch(removeAllItemsFromCart());
+  };
+
+  const onError = (error) => {
+    console.error(error);
+  };
+
   return (
     <section>
       <div
@@ -36,7 +61,7 @@ function CheckoutForm() {
           <CheckoutItems />
         </div>
         <div className="lg:w-[30%] lg:mx-0 sm:w-4/5 w-full mx-auto">
-          <form>
+          <form onSubmit={handleSubmit(proceedPay, onError)}>
             <article
               className="bg-white xl:px-4 xl:py-7 xl:rounded-md rounded 
             shadow sm:py-7 sm:px-5 py-5 px-3.5 mb-[10px] "
@@ -79,7 +104,11 @@ function CheckoutForm() {
               className="bg-white w-full xl:px-4 xl:py-4 xl:rounded-md xl:mb-3 shadow rounded 
             sm:py-5 sm:px-5 sm:mb-2.5 px-3.5 py-4 mb-2"
             >
-              <AddressInput />
+              <AddressInput
+                register={register}
+                setValue={setValue}
+                errors={errors}
+              />
             </article>
             <article
               className="bg-white w-full xl:px-4 xl:py-4 xl:rounded-md xl:mb-3 shadow rounded 
@@ -91,7 +120,10 @@ function CheckoutForm() {
               >
                 choose payment option
               </p>
-              <RadioButtonGroupPayOption options={payOptions} />
+              <RadioButtonGroupPayOption
+                options={payOptions}
+                {...register("payOption")}
+              />
             </article>
             <Button
               type="submit"
