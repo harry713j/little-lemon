@@ -12,7 +12,11 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const login = async (data) => {
     setError(null);
@@ -29,7 +33,8 @@ function Login() {
         navigate("/");
       }
     } catch (error) {
-      setError("Something went wrong");
+      console.error(error);
+      setError("Failed to login");
       toast.error("Failed to login");
     }
   };
@@ -55,6 +60,7 @@ function Login() {
             label="Email*"
             className="bg-white"
             labelClassName="bg-white"
+            emptyFieldError={errors.email ? errors.email.message : null}
             name="email"
             control={control}
             rules={{
@@ -71,14 +77,15 @@ function Login() {
             label="Password*"
             className="bg-white"
             labelClassName="bg-white"
+            emptyFieldError={errors.password ? errors.password.message : null}
             name="password"
             control={control}
             rules={{
               required: "Password is required",
               pattern: {
-                value: /^[a-z0-9]{6,}$/,
+                value: /^[a-z0-9]{8,}$/,
                 message:
-                  "password must be at least 6 character long containing a-z & 0-9",
+                  "Password must be 8+ characters, containing a-z & 0-9.",
               },
             }}
           />

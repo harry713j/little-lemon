@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { removeAllItemsFromCart } from "../../store/features/cart/cartSlice.js";
+import { useNavigate } from "react-router-dom";
 
 const payOptions = [
   { label: "Pay on Delivery", value: "pay_on_delivery" },
@@ -25,6 +26,7 @@ function CheckoutForm() {
   } = useForm();
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [netPrice, setNetPrice] = useState(0);
   const deliveryFee = cart.length ? 10 : 0;
 
@@ -45,6 +47,9 @@ function CheckoutForm() {
     console.log(orderDetails);
     toast.success("Your order has placed!");
     dispatch(removeAllItemsFromCart());
+    setTimeout(() => {
+      navigate("/congratulation");
+    }, 3000);
   };
 
   const onError = (error) => {

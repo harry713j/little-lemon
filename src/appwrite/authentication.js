@@ -17,35 +17,16 @@ class AuthService {
     this.database = new Databases(this.client);
   }
 
-  async createAccount({ email, password, name, gender, profilePicture }) {
+  async createAccount({ email, password, fullName }) {
     try {
       const userAccount = await this.account.create(
         ID.unique(),
         email,
         password,
-        name,
-        gender
+        fullName
       );
 
       if (userAccount) {
-        let profilePicId = null;
-        // if profile picture given by user then upload that to bucket
-        if (profilePicture) {
-          const imageUpload = await this.storage.createFile(
-            environment_variables.appwriteProfileImageBucketId,
-            ID.unique(),
-            profilePicture
-          );
-          profilePicId = imageUpload.$id;
-        }
-
-        // storing the profile image reference in collection
-        await this.database.createDocument(
-          environment_variables.appwriteDatabaseId,
-          environment_variables.appwriteCollectionUserProfileId,
-          userAccount.$id,
-          { profilePicId }
-        );
         // login the user after they successfully created account
         return this.login({ email, password });
       } else {
@@ -57,6 +38,19 @@ class AuthService {
   }
 
   async login({ email, password }) {
+    console.log(email, password);
+    try {
+      // Check if a session already exists
+      const currentSession = await this.account.getSession("current");
+      if (currentSession) {
+        return currentSession;
+      }
+    } catch (error) {
+      // If no session exists, proceed with login
+      if (error.code !== 404) {
+        throw new Error(`Error checking existing session: ${error.message}`);
+      }
+    }
     try {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {

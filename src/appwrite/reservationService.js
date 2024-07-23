@@ -1,6 +1,7 @@
 import environment_variables from "../environment_import/environmentVariables";
 import { Client, ID, Databases, Query } from "appwrite";
 
+//FIXME: fix this too
 class ReservationService {
   client = new Client();
   databases;
@@ -19,11 +20,12 @@ class ReservationService {
     email,
     date,
     time,
-    noOfGuest,
-    occasion = "",
-    specialRequest = "",
+    guests,
+    occasions = "",
+    requests = "",
     isCompleted = false,
   }) {
+    console.log("from collection ", fullName, guests, date, time);
     try {
       this.databases.createDocument(
         environment_variables.appwriteDatabaseId,
@@ -35,9 +37,9 @@ class ReservationService {
           email,
           date,
           time,
-          noOfGuest,
-          occasion,
-          specialRequest,
+          guests,
+          occasions,
+          requests,
           isCompleted,
         }
       );

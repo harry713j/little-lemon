@@ -10,7 +10,10 @@ import "./styles.css";
 import dayjs from "dayjs";
 import { useController } from "react-hook-form";
 
-function CustomTimePicker({ name, control, rules, defaultValue = null }) {
+const CustomTimePicker = React.forwardRef(function (
+  { emptyFieldError, name, control, rules, defaultValue = null },
+  ref
+) {
   const {
     field: { value, onChange },
   } = useController({
@@ -21,20 +24,31 @@ function CustomTimePicker({ name, control, rules, defaultValue = null }) {
   });
 
   const handleTimeChange = (newValue) => {
-    onChange(newValue);
+    if (newValue) {
+      const formattedTime = newValue.format("HH:mm:ss"); // Format as needed
+      onChange(formattedTime);
+    } else {
+      onChange(null);
+    }
   };
 
   return (
     <Box>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <TimePicker
+          ref={ref}
           label="Time*"
-          value={value}
+          value={value ? dayjs(value) : null}
           onChange={handleTimeChange}
           viewRenderers={{
             hours: renderTimeViewClock,
             minutes: renderTimeViewClock,
             seconds: renderTimeViewClock,
+          }}
+          slotProps={{
+            textField: {
+              helperText: emptyFieldError,
+            },
           }}
           className="custom-time-picker"
           sx={{
@@ -46,6 +60,6 @@ function CustomTimePicker({ name, control, rules, defaultValue = null }) {
       </LocalizationProvider>
     </Box>
   );
-}
+});
 
 export default CustomTimePicker;

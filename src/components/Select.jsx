@@ -10,6 +10,7 @@ const Select = React.forwardRef(function (
     placeholder,
     className,
     labelClassName,
+    emptyFieldError,
     name,
     control,
     rules,
@@ -20,9 +21,10 @@ const Select = React.forwardRef(function (
 ) {
   const id = useId();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(null);
   const dropdownRef = useRef(null);
-  const { field } = useController({
+  const {
+    field: { value, onChange },
+  } = useController({
     name,
     control,
     rules,
@@ -34,7 +36,7 @@ const Select = React.forwardRef(function (
   };
 
   const handleOptionClick = (value) => {
-    setSelectedValue(value);
+    onChange(value);
     setIsOpen(false);
   };
 
@@ -66,7 +68,7 @@ const Select = React.forwardRef(function (
         <span
           className={`font-karla font-medium xl:text-lg sm:text-[17px] text-base text-black/80 `}
         >
-          {selectedValue ? selectedValue : ""}
+          {value || placeholder}
         </span>
 
         <BsChevronDown
@@ -79,7 +81,7 @@ const Select = React.forwardRef(function (
           className={`${labelClassName} absolute italic font-karla font-medium xl:px-1 px-[2px] 
          duration-500 text-black/80 peer-focus:text-validateGreen peer-focus:xl:text-[15px] peer-focus:xl:-translate-y-5
           xl:mt-2 xl:ml-4 sm:mt-1 sm:ml-3 peer-focus:sm:text-sm peer-focus:sm:-translate-y-4 ${
-            selectedValue
+            value
               ? "text-green/80 xl:text-[15px] xl:-translate-y-5 sm:text-sm sm:-translate-y-4 text-sm -translate-y-4"
               : "xl:text-[22px] sm:text-[20px] text-lg"
           } mt-1 ml-3 peer-focus:text-sm peer-focus:-translate-y-4`}
@@ -107,6 +109,11 @@ const Select = React.forwardRef(function (
             </li>
           ))}
         </ul>
+      )}
+      {emptyFieldError && !value && (
+        <p className="text-[11px] font-karla font-normal text-red-500 mt-1">
+          {emptyFieldError}
+        </p>
       )}
     </div>
   );

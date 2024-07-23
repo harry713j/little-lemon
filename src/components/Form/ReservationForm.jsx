@@ -13,20 +13,29 @@ import reservationService from "../../appwrite/reservationService.js";
 import { sendEmail } from "../../email/emailService.js";
 import { toast } from "react-toastify";
 
+//FIXME: fix with the emailJS account
 function ReservationForm() {
   const [error, setError] = useState(null);
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const create = async (data) => {
+    console.log(data);
     setError(null);
     try {
       const reservation = await reservationService.createReservation(data);
+
       await sendEmail(data);
       toast.success(
         `Reservation successful! Confirmation email has been sent.`
       );
+      console.log(reservation);
     } catch (error) {
-      setError("Failed to reservation ");
+      console.error(error);
+      setError("Reservation failed");
       toast.error("Reservation failed! Please try again.");
     }
   };
@@ -40,6 +49,7 @@ function ReservationForm() {
         <Input
           label="Full Name*"
           labelClassName="bg-creamWhite"
+          emptyFieldError={errors.fullName ? errors.fullName.message : null}
           name="fullName"
           control={control}
           rules={{
@@ -50,6 +60,9 @@ function ReservationForm() {
           type="tel"
           label="Phone Number*"
           labelClassName="bg-creamWhite"
+          emptyFieldError={
+            errors.phoneNumber ? errors.phoneNumber.message : null
+          }
           name="phoneNumber"
           control={control}
           rules={{
@@ -61,6 +74,7 @@ function ReservationForm() {
           type="email"
           label="Email*"
           labelClassName="bg-creamWhite"
+          emptyFieldError={errors.email ? errors.email.message : null}
           name="email"
           control={control}
           rules={{
@@ -73,11 +87,13 @@ function ReservationForm() {
           }}
         />
         <CustomDatePicker
+          emptyFieldError={errors.date ? errors.date.message : null}
           name="date"
           control={control}
           rules={{ required: "Date is required" }}
         />
         <CustomTimePicker
+          emptyFieldError={errors.time ? errors.time.message : null}
           name="time"
           control={control}
           rules={{ required: "Time is required" }}
@@ -86,6 +102,7 @@ function ReservationForm() {
           options={noOfGuests}
           label="Number of People"
           labelClassName="bg-creamWhite"
+          emptyFieldError={errors.guests ? errors.guests.message : null}
           name="guests"
           control={control}
           rules={{ required: "Number of People is required" }}

@@ -8,6 +8,8 @@ function LogButton() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  console.log(state);
+
   const handleLogin = () => {
     // navigate to the login page
     navigate("/login");

@@ -4,7 +4,7 @@ import { SignupForm } from "../components/index.js";
 function Signup() {
   return (
     <section
-      className="bg-lemon bg-cover bg-center relative block overflow-hidden z-10
+      className="bg-lemon bg-cover bg-center relative block overflow-hidden z-10 min-h-screen
       before:content-[''] before:absolute before:bg-gradient-to-r before:from-yellow before:to-yellow 
       before:opacity-40 before:block before:inset-0 before:z-[-5]"
     >

@@ -17,13 +17,6 @@ class TestimonyService {
 
   async addReview({ review, ratings, userId }) {
     try {
-      const userProfile = await this.database.getDocument(
-        environment_variables.appwriteDatabaseId,
-        environment_variables.appwriteCollectionUserProfileId,
-        userId
-      );
-
-      const profilePicId = userProfile.profilePicId || null;
       return await this.database.createDocument(
         environment_variables.appwriteDatabaseId,
         environment_variables.appwriteCollectionTestimonyId,
@@ -32,7 +25,6 @@ class TestimonyService {
           review,
           ratings,
           userId,
-          profilePicId,
         }
       );
     } catch (error) {
@@ -54,12 +46,16 @@ class TestimonyService {
     }
   }
 
+  // this will get used when i will add feature where user can upload
+  // their other details like profile picture
+  /*
   getImagePreview(imageId) {
     return this.storage.getFilePreview(
       environment_variables.appwriteProfileImageBucketId,
       imageId
     );
   }
+    */
 }
 const testimonyService = new TestimonyService();
 

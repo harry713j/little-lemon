@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="relative xl:px-[100px] md:px-[44px] px-[24px]">
+      <main className="relative xl:px-[100px] md:px-[44px] px-[24px] overflow-hidden">
         <Outlet />
       </main>
       <ToastContainer limit={5} />

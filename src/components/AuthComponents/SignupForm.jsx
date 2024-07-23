@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Input, RadioButtonGroupGender } from "../index";
+import { Button, Input } from "../index";
 import { useForm } from "react-hook-form";
 import authService from "../../appwrite/authentication";
 import { Link } from "react-router-dom";
@@ -12,18 +12,16 @@ function SignupForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const { control, handleSubmit } = useForm();
-
-  const options = [
-    { label: "Male", value: "male" },
-    { label: "Female", value: "female" },
-    { label: "Other", value: "other" },
-  ];
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const createUser = async (data) => {
     setError(null);
     try {
-      // console.log(data);
+      console.log(data);
       const user = await authService.createAccount(data);
       if (user) {
         const userData = await authService.getCurrentUser();
@@ -35,8 +33,8 @@ function SignupForm() {
         navigate("/");
       }
     } catch (error) {
-      setError("Something went wrong");
-      toast.error(`Failed to create account`);
+      setError("Failed to create account");
+      toast.error(`Something went wrong!Failed to create account`);
     }
   };
   return (
@@ -60,6 +58,7 @@ function SignupForm() {
             label="Full Name*"
             className="bg-white"
             labelClassName="bg-white"
+            emptyFieldError={errors.name ? errors.name.message : null}
             name="name"
             control={control}
             rules={{ required: "Name is required" }}
@@ -69,6 +68,7 @@ function SignupForm() {
             label="Email*"
             className="bg-white"
             labelClassName="bg-white"
+            emptyFieldError={errors.email ? errors.email.message : null}
             name="email"
             control={control}
             rules={{
@@ -85,47 +85,17 @@ function SignupForm() {
             label="Password*"
             className="bg-white"
             labelClassName="bg-white"
+            emptyFieldError={errors.password ? errors.password.message : null}
             name="password"
             control={control}
             rules={{
               required: "Password is required",
               pattern: {
-                value: /^[a-z0-9]{6,}$/,
+                value: /^[a-z0-9]{8,}$/,
                 message:
-                  "password must be at least 6 character long containing a-z & 0-9",
+                  "Password must be 8+ characters, containing a-z & 0-9.",
               },
             }}
-          />
-          <Input
-            type="password"
-            label="Confirm Password*"
-            className="bg-white"
-            labelClassName="bg-white"
-            name="confirmPassword"
-            control={control}
-            rules={{
-              required: "Password is required",
-              pattern: {
-                value: /^[a-z0-9]{6,}$/,
-                validate: (value) =>
-                  value === control.getValues().password ||
-                  "Password do not match",
-              },
-            }}
-          />
-          <RadioButtonGroupGender
-            options={options}
-            name="gender"
-            control={control}
-            rules={{ required: "Gender is required" }}
-          />
-          <Input
-            type="file"
-            className="bg-white"
-            labelClassName="bg-white"
-            accept="image/png, image/jpg, image/jpeg, image/gif"
-            name="image"
-            control={control}
           />
           <Button
             type="submit"

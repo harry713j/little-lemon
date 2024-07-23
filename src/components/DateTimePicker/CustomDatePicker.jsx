@@ -7,7 +7,10 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import { useController } from "react-hook-form";
 
-function CustomDatePicker({ name, control, rules, defaultValue = null }) {
+const CustomDatePicker = React.forwardRef(function (
+  { emptyFieldError, name, control, rules, defaultValue = null },
+  ref
+) {
   const {
     field: { value, onChange },
   } = useController({
@@ -16,21 +19,32 @@ function CustomDatePicker({ name, control, rules, defaultValue = null }) {
     rules,
     defaultValue,
   });
-  // console.log(selectedDate);
 
   const handleDateChange = (newValue) => {
-    onChange(newValue);
+    if (newValue) {
+      // Convert Dayjs object to ISO string or JavaScript Date
+      const formattedDate = newValue.toISOString(); // ISO string
+      onChange(formattedDate);
+    } else {
+      onChange(null);
+    }
   };
 
   return (
     <Box>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
+          ref={ref}
           label="Date*"
-          value={value}
+          value={value ? dayjs(value) : null}
           onChange={handleDateChange}
           format="LL"
           minDate={dayjs()}
+          slotProps={{
+            textField: {
+              helperText: emptyFieldError,
+            },
+          }}
           className="custom-date-picker"
           sx={{
             "& .MuiInputLabel-root.MuiInputLabel-shrink": {
@@ -41,6 +55,6 @@ function CustomDatePicker({ name, control, rules, defaultValue = null }) {
       </LocalizationProvider>
     </Box>
   );
-}
+});
 
 export default CustomDatePicker;

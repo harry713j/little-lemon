@@ -15,7 +15,7 @@ function Congratulation() {
   useEffect(() => {
     setTimeout(() => {
       navigate("/");
-    }, 2000);
+    }, 4000);
   }, [navigate]);
 
   return (
@@ -38,7 +38,7 @@ function Congratulation() {
           />
         </svg>
         <h1 className="font-markazi font-medium text-lightGreen underline xl:text-[48px] sm:text-[36px] text-[24px]">
-          Congratulations
+          Congratulations!
         </h1>
         <span className="flex flex-col items-center xl:space-y-3 sm:space-y-2 space-y-1">
           <h2 className="font-karla font-medium text-black/80 xl:text-[18px] sm:text-[17px] text-base">

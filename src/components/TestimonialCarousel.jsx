@@ -92,9 +92,6 @@ function TestimonialCarousel() {
           <TestimonialCard
             key={testimony.$id}
             review={testimony.review}
-            profile={
-              testimonyService.getImagePreview(testimony.user_image).href
-            }
             name={testimony.userName}
             ratings={testimony.ratings}
           />

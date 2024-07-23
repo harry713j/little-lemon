@@ -21,7 +21,6 @@ import CustomTimePicker from "./DateTimePicker/CustomTimePicker";
 import SignupForm from "./AuthComponents/SignupForm";
 import LoginForm from "./AuthComponents/LoginForm";
 import RadioButton from "./RadioButton";
-import RadioButtonGroupGender from "./RadioButtonGroup";
 import CheckoutItems from "./CheckoutItems";
 import ReservationForm from "./Form/ReservationForm";
 import CheckoutForm from "./Form/CheckoutForm";
@@ -54,7 +53,6 @@ export {
   SignupForm,
   LoginForm,
   RadioButton,
-  RadioButtonGroupGender,
   RadioButtonGroupPayOption,
   CheckoutItems,
   ReservationForm,

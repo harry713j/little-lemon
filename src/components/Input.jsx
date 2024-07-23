@@ -9,6 +9,7 @@ const Input = React.forwardRef(function (
     label,
     className,
     labelClassName,
+    emptyFieldError,
     name,
     control,
     rules,
@@ -97,7 +98,7 @@ const Input = React.forwardRef(function (
          duration-500 text-black/80 
           xl:mt-2 xl:ml-4 sm:mt-1 sm:ml-3 mt-1 ml-3 ${
             field.value
-              ? "text-green/80 xl:text-[15px] xl:-translate-y-5 sm:text-sm sm:-translate-y-4 text-sm -translate-y-4"
+              ? "text-green/80 leading-[0px] xl:text-[15px] xl:-translate-y-5 sm:text-sm sm:-translate-y-4 text-sm -translate-y-4"
               : "xl:text-[22px] sm:text-[20px] text-lg"
           } peer-focus:text-validateGreen peer-focus:xl:text-[15px] peer-focus:xl:-translate-y-5
           peer-focus:sm:text-sm peer-focus:sm:-translate-y-4 peer-focus:text-sm peer-focus:-translate-y-4`}
@@ -106,11 +107,15 @@ const Input = React.forwardRef(function (
           {label}
         </label>
       )}
-      {error && (
-        <p className="text-center font-karla font-normal text-red-500 xl:mt-5 sm:mt-4 mt-3">
-          {error}
+      {emptyFieldError ? (
+        <p className="text-[11px] font-karla font-normal text-red-500 mt-1">
+          {emptyFieldError}
         </p>
-      )}
+      ) : error ? (
+        <p className="text-[11px] font-karla font-normal text-red-500 mt-1">
+          {error.message}
+        </p>
+      ) : null}
     </div>
   );
 });

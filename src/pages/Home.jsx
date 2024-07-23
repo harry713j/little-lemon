@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, ItemCarousel, TestimonialCarousel } from "../components";
-import pizza from "../assets/pizza.png";
+import pizza from "../assets/pizza-min.png";
 
 function Home() {
   const navigate = useNavigate();
