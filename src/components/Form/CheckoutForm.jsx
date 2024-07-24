@@ -17,7 +17,6 @@ const payOptions = [
 ];
 
 function CheckoutForm() {
-  //TODO: integrating stripe api for payment
   const {
     register,
     handleSubmit,
@@ -44,7 +43,7 @@ function CheckoutForm() {
       ...data,
       totalPrice: netPrice,
     };
-    console.log(orderDetails);
+
     toast.success("Your order has placed!");
     dispatch(removeAllItemsFromCart());
     setTimeout(() => {

@@ -38,7 +38,6 @@ class AuthService {
   }
 
   async login({ email, password }) {
-    console.log(email, password);
     try {
       // Check if a session already exists
       const currentSession = await this.account.getSession("current");

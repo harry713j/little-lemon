@@ -21,7 +21,6 @@ function SignupForm() {
   const createUser = async (data) => {
     setError(null);
     try {
-      console.log(data);
       const user = await authService.createAccount(data);
       if (user) {
         const userData = await authService.getCurrentUser();
