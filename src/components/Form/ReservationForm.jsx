@@ -10,12 +10,12 @@ import {
 import { useForm } from "react-hook-form";
 import { occasions, noOfGuests } from "../../utility/optionsData.js";
 import reservationService from "../../appwrite/reservationService.js";
-import { sendEmail } from "../../email/emailService.js";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-//FIXME: fix with the emailJS account
 function ReservationForm() {
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
@@ -23,18 +23,17 @@ function ReservationForm() {
   } = useForm();
 
   const create = async (data) => {
-    console.log(data);
     setError(null);
     try {
       const reservation = await reservationService.createReservation(data);
-
-      await sendEmail(data);
       toast.success(
         `Reservation successful! Confirmation email has been sent.`
       );
-      console.log(reservation);
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
-      console.error(error);
       setError("Reservation failed");
       toast.error("Reservation failed! Please try again.");
     }
